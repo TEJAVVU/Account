@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Cash;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\URL;
+use Session;
 class CashController extends Controller
 {
     /**
@@ -25,6 +26,12 @@ class CashController extends Controller
     public function create()
     {
         //
+
+        $url=URL::previous();
+        $id = substr($url, strrpos($url, '/') + 1);
+
+        Session::flash("info","System ready for new cash record");
+        return view('cash.create',compact('id'));
     }
 
     /**
@@ -36,6 +43,10 @@ class CashController extends Controller
     public function store(Request $request)
     {
         //
+
+        Cash::create($request->all());
+        Session::flash("info","New cash entry made");
+        return redirect(route('cashbook.index'));
     }
 
     /**

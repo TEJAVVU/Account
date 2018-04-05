@@ -15,7 +15,7 @@
 
                                     <div class="card-body">
 
-                                        <a href="{{url(route('cash.create'))}}" class="btn btn-danger">Create new Cash Entry</a>
+                                        <a href="{{url(route('cashbook.create'))}}" class="btn btn-danger">Create new Credit Entry</a>
 
                                     </div>
                                 </div>
