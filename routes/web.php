@@ -17,7 +17,9 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-Route::resource('/cashbook','CashBookController');
-Route::resource('/cash','CashController');
-Route::resource('/bank','BankController');
+Route::group(['middleware'=>'auth'],function(){
+    Route::get('/home', 'HomeController@index')->name('home');
+    Route::resource('/cashbook','CashBookController');
+    Route::resource('/cash','CashController');
+    Route::resource('/bank','BankController');
+});
