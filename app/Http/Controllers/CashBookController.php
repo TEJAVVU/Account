@@ -15,6 +15,7 @@ class CashBookController extends Controller
     public function index()
     {
         //
+
         $cashbooks =CashBook::latest()->get();
         $number = count($cashbooks);
 
@@ -62,7 +63,7 @@ class CashBookController extends Controller
     {
         //
 
-        $cashBook=CashBook::with('cash','bank')->paginate(5)->first();
+        $cashBook=CashBook::where('id',$id)->with('cash','bank')->paginate(5)->first();
         Session::flash("info","There you go");
 
 
