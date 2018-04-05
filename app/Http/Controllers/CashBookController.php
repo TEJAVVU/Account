@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\CashBook;
 use Illuminate\Http\Request;
-
+use Session;
 class CashBookController extends Controller
 {
     /**
@@ -15,6 +15,10 @@ class CashBookController extends Controller
     public function index()
     {
         //
+        $cashbooks =CashBook::latest()->all();
+        $number = count($cashbooks);
+        Session::flash("info","You currently have ".$number." cashbook(s)");
+        return view('cashbook.index',compact('cashbooks'));
     }
 
     /**
@@ -25,6 +29,8 @@ class CashBookController extends Controller
     public function create()
     {
         //
+        Session::flash("info","System ready for new cashbook");
+        return view('cashbook.index');
     }
 
     /**
@@ -36,6 +42,9 @@ class CashBookController extends Controller
     public function store(Request $request)
     {
         //
+        CashBook::create($request->all());
+        Session::flash("info","New cashbook added");
+        return redirect(route('cashbook.index'));
     }
 
     /**
@@ -47,6 +56,9 @@ class CashBookController extends Controller
     public function show(CashBook $cashBook)
     {
         //
+        Session::flash("info","There you go");
+
+        return view('cashbook.show',compact($cashBook));
     }
 
     /**
@@ -58,6 +70,9 @@ class CashBookController extends Controller
     public function edit(CashBook $cashBook)
     {
         //
+        Session::flash("warning","Update necessary fields");
+
+        return view('cashbook.edit',compact('cashBook'));
     }
 
     /**
@@ -70,6 +85,10 @@ class CashBookController extends Controller
     public function update(Request $request, CashBook $cashBook)
     {
         //
+        $cashBook->update($request->all());
+        Session::flash("info","Cashbook updated successfully");
+        return redirect(route('cashbook.index'));
+
     }
 
     /**
@@ -81,5 +100,9 @@ class CashBookController extends Controller
     public function destroy(CashBook $cashBook)
     {
         //
+        $cashBook->delete();
+        Session::flash("danger","Cashbook deleted");
+        return redirect(route('cashbook.index'));
+
     }
 }
