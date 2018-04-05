@@ -67,9 +67,11 @@ class CashBookController extends Controller
      * @param  \App\CashBook  $cashBook
      * @return \Illuminate\Http\Response
      */
-    public function edit(CashBook $cashBook)
+    public function edit($id)
     {
         //
+        $cashBook= CashBook::where('id',$id)->first();
+
         Session::flash("warning","Update necessary fields");
 
         return view('cashbook.edit',compact('cashBook'));
@@ -82,9 +84,10 @@ class CashBookController extends Controller
      * @param  \App\CashBook  $cashBook
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CashBook $cashBook)
+    public function update(Request $request, CashBook $cashBook,$id)
     {
         //
+        $cashBook= CashBook::where('id',$id)->first();
         $cashBook->update($request->all());
         Session::flash("info","Cashbook updated successfully");
         return redirect(route('cashbook.index'));
