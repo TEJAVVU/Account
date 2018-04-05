@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Bank;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\URL;
+use Session;
 class BankController extends Controller
 {
     /**
@@ -16,15 +17,15 @@ class BankController extends Controller
     {
         //
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //
+
+        $url=URL::previous();
+        $id = substr($url, strrpos($url, '/') + 1);
+
+        Session::flash("info","System ready for new bank record");
+        return view('bank.create',compact('id'));
     }
 
     /**
@@ -36,6 +37,9 @@ class BankController extends Controller
     public function store(Request $request)
     {
         //
+        Bank::create($request->all());
+        Session::flash("info","New bank entry made");
+        return redirect(route('cashbook.show',$request->cash_book_id));
     }
 
     /**

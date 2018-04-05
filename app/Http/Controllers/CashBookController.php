@@ -62,8 +62,9 @@ class CashBookController extends Controller
     {
         //
 
-        $cashBook=CashBook::with('cash','bank')->first();
+        $cashBook=CashBook::with('cash','bank')->paginate(5)->first();
         Session::flash("info","There you go");
+
 
         return view('cashbook.show',compact('cashBook'));
     }

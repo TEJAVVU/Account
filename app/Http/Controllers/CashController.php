@@ -46,7 +46,7 @@ class CashController extends Controller
 
         Cash::create($request->all());
         Session::flash("info","New cash entry made");
-        return redirect(route('cashbook.index'));
+        return redirect(route('cashbook.show',$request->cash_book_id));
     }
 
     /**
