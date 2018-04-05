@@ -23,9 +23,12 @@
                               <td><a class="btn btn-primary" href="{{route('cashbook.show',$cashbook->id)}}"><i class="fa fa-eye"></i></a></td>
                               <td><a class="btn btn-warning" href="{{route('cashbook.edit',$cashbook->id)}}"><i class="fa fa-pencil"></i></a></td>
                               <td>
-                                  {!! Form::open(['route' => ['cashbook.destroy',$cashbook->id],'method'=>'delete']) !!}
-                                  {!! Form::submit('Delete') !!}
-                                  {!! Form::close() !!}
+                                  <form action="{{url('/cashbook/'.$cashbook->id)}}" method="post">
+                                      @csrf
+                                      @method('DELETE')
+
+                                      <button type="submit" class="btn btn-primary"><i class="fa fa-trash-o"></i></button>
+                                  </form>
                               </td>
                           </tr>
 

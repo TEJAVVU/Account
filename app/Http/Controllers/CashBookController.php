@@ -97,10 +97,10 @@ class CashBookController extends Controller
      * @param  \App\CashBook  $cashBook
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CashBook $cashBook)
+    public function destroy(CashBook $cashBook,$id)
     {
         //
-        $cashBook->delete();
+        Cashbook::destroy($id);
         Session::flash("danger","Cashbook deleted");
         return redirect(route('cashbook.index'));
 
