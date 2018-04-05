@@ -17,6 +17,11 @@ class CashBookController extends Controller
         //
         $cashbooks =CashBook::latest()->get();
         $number = count($cashbooks);
+
+        if($number <1){
+            Session::flash("info","No cashbook found. Please create one");
+            return view('cashbook.create');
+        }
         Session::flash("info","You currently have ".$number." cashbook(s)");
         return view('cashbook.index',compact('cashbooks'));
     }

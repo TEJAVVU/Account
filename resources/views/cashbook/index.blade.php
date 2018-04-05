@@ -17,6 +17,7 @@
                           <th>Delete</th>
                           </thead>
                           <tbody>
+
                           @foreach($cashbooks as $cashbook)
                           <tr>
                               <td>{{$cashbook->name}}</td>
@@ -35,7 +36,6 @@
                               @endforeach
                           </tbody>
                       </table>
-
 
 
                     </div>
