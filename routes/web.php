@@ -20,3 +20,4 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('/cashbook','CashBookController');
 Route::resource('/cash','CashController');
+Route::resource('/bank','BankController');

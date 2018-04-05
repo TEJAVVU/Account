@@ -5,15 +5,30 @@
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <div class="card">
-                    <div class="card-header">Create new Cashbook</div>
+                    <div class="card-header">Edit Cash Entry</div>
 
                     <div class="card-body">
 
-                        {!! Form::model($cashBook,['route' => ['cashbook.update',$cashBook->id],'method'=>'patch']) !!}
+                        {!! Form::model($cash,['route' => ['cash.update',$cash->id],'method'=>'patch']) !!}
 
                         <div class="form-group">
-                            {!! Form::label('name') !!}
-                            {!! Form::text('name',null,['class'=>'form-control']) !!}
+                            {!! Form::label('particulars') !!}
+                            {!! Form::text('particulars',null,['class'=>'form-control']) !!}
+
+                        </div>
+                        <div class="form-group">
+                            {!! Form::label('amount') !!}
+                            {!! Form::text('amount',null,['class'=>'form-control']) !!}
+
+                        </div>
+                        <div class="form-group">
+                            {!! Form::label('type') !!}
+                            {!! Form::select('type',['0'=>'Credit','1'=>'Debit'],null,['class'=>'form-control']) !!}
+
+                        </div>
+                        <div class="form-group">
+                            {!! Form::label('Date') !!}
+                            {!! Form::date('date_of_transaction',null,['class'=>'form-control']) !!}
 
                         </div>
                         <button class="btn btn-block btn-warning" type="submit">Update</button>

@@ -58,12 +58,14 @@ class CashBookController extends Controller
      * @param  \App\CashBook  $cashBook
      * @return \Illuminate\Http\Response
      */
-    public function show(CashBook $cashBook)
+    public function show($id)
     {
         //
+
+        $cashBook=CashBook::with('cash','bank')->first();
         Session::flash("info","There you go");
 
-        return view('cashbook.show',compact($cashBook));
+        return view('cashbook.show',compact('cashBook'));
     }
 
     /**
