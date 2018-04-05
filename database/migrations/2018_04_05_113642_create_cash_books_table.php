@@ -15,6 +15,9 @@ class CreateCashBooksTable extends Migration
     {
         Schema::create('cash_books', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name');
+
+            $table->softDeletes();
             $table->timestamps();
         });
     }

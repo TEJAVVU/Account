@@ -15,7 +15,7 @@ class CashBookController extends Controller
     public function index()
     {
         //
-        $cashbooks =CashBook::latest()->all();
+        $cashbooks =CashBook::latest()->get();
         $number = count($cashbooks);
         Session::flash("info","You currently have ".$number." cashbook(s)");
         return view('cashbook.index',compact('cashbooks'));
@@ -30,7 +30,7 @@ class CashBookController extends Controller
     {
         //
         Session::flash("info","System ready for new cashbook");
-        return view('cashbook.index');
+        return view('cashbook.create');
     }
 
     /**
